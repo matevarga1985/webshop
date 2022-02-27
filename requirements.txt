@@ -5,6 +5,7 @@ fastapi == 0.74.1
 uvicorn == 0.17.5
 gunicorn == 20.1.0
 
+# following packages are only used for development:
 # scikit_learn == 1.0.2
 # matplotlib == 3.5.1
 # beautifulsoup4 == 4.10.0
