@@ -1,17 +1,22 @@
 from fastapi import FastAPI
 from typing import Optional
+import pickle
+import pandas as pd
 
 app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return "juppee"
+    return "Arany nyaklanc prediktalashoz meghivas: /predict?weight=2.0"
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional [str] = None):
+@app.get("/predict/{weight}")
+def read_item(weight: int, q: Optional [str] = None):
+    model = pickle.load(open('nyaklanc_first_rf.pickle', 'rb'))
+    width = 7.1
+    
+    pred = model.predict(pd.DataFrame({'weight': [weight], 'width': [width]}))
     # http://127.0.0.1:8000/items/5?q=sas
-    return {"item_id": item_id, "q":q}
-
+    return {"predicted price": pred}
 
 
 #     //main.py
