@@ -10,13 +10,13 @@ def read_root():
     return "Arany nyaklanc prediktalashoz meghivas: /predict?weight=2.0"
 
 @app.get("/predict/{weight}")
-def read_item(weight: int, q: Optional [str] = None):
-    model = pickle.load(open('nyaklanc_first_rf.pickle', 'rb'))
+def predict_price(weight: float, q: Optional [str] = None):
+    # model = pickle.load(open('./nyaklanc_first_rf.pickle', 'rb'))
     width = 7.1
-    
-    pred = model.predict(pd.DataFrame({'weight': [weight], 'width': [width]}))
+
+    # pred = model.predict(pd.DataFrame({'weight': [weight], 'width': [width]}))
     # http://127.0.0.1:8000/items/5?q=sas
-    return {"predicted price": pred}
+    return {"predicted price": weight}
 
 
 #     //main.py
